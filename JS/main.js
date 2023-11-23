@@ -7,19 +7,14 @@ const restaurantName = "ANGEL & DEMONIO";
 const apiURI = "https://api.mi-menu.com.ar/";
 
 let divContainer = document.getElementById('div-container')
-divContainer.append(navbarComponent())
+divContainer.append(navbarComponent(restaurantName))
 
 let sidenavMenu =  document.getElementById("sidenav-menu")
 let sidenavCart = document.getElementById('sidenav-cart')
 
-
-
-
-
 function getCategories() {
     return new Promise((resolve, reject) => {
         const route = `${apiURI}categories/${restaurantUser}`;
-
         fetch(route)
             .then((response) => {
                 if (!response.ok) {
@@ -63,38 +58,33 @@ function getProductsToCategory(categoryId) {
     });
 }
 
-let sidenavCategoriesContainer = document.getElementById('sidenav-categories-container')
+let sidenavCategoriesContainer
+
 async function renderCategories(data) {
     data.sort((a, b) => a.sortNumber - b.sortNumber);
+    try {
+        sidenavMenu.appendChild(sidenavMenuComponent(data))
+        sidenavCategoriesContainer = document.getElementById('sidenav-categories-container')
 
-    
-    //allProducts = []
-    
-    //for (const element of data){
-        try {
-            sidenavCategoriesContainer = document.getElementById('sidenav-categories-container')
-            sidenavMenu.appendChild(sidenavMenuComponent(data))
-            
-            // if (element.enable) {
-            //     const products = await getProductsToCategory(element.id);
-            //     //allProducts.push(products)
-
-            //     //funcion que reciba la categoria completa y el array de productos
-                
-            // }
-        } catch (error) {
-            console.error("Error al obtener los productos:", error);
-        }
-    //}
+    } catch (error) {
+        console.error("Error al obtener los productos:", error);
+    }
 }
 
-let cartButton = document.getElementById('cart-button')//close-sidenav-btn
-let closeSidenavBtn = document.getElementById('close-cart-btn')//close-sidenav-btn
+//boton de carrito del navbar
+let cartButton = document.getElementById('cart-button')
+//boton del sidenav de cerrar el carrito
+let closeSidenavBtn = document.getElementById('close-cart-btn')
+
+//boton de menu del navbar (muestra las categorias)
 let menuButton = document.getElementById('menu-button')
+
+//boton del sidenav de cerrar el menu de categorias
 let closeMenuBtn = document.getElementById('close-menu-btn')
 
 cartButton.onclick = ()=>{ openMenuNav(sidenavCart,sidenavCartContainer)}
 closeSidenavBtn.onclick = ()=>{closeMenuNav(sidenavCart,sidenavCartContainer)}
+
 menuButton.onclick = ()=>{ openMenuNav(sidenavMenu,sidenavCategoriesContainer)}
 closeMenuBtn.onclick = ()=>{closeMenuNav(sidenavMenu,sidenavCategoriesContainer)}
 
@@ -116,30 +106,19 @@ function closeMenuNav(conteiner, content) {
     },100)
 }
 
-let mockArrayData = [
-    "Pizzas",
-    "Empanadas",
-    "Bebidas con Alcohol",
-    "Bebidas sin Alcohol",
-    "Sushi",
-    "Hamburguesas",
-    "Ensaladas",
-    "Pastas",
-    "Comida Mexicana",
-    "Comida China",
-    "Comida India",
-    "Postres",
-    "Desayunos",
-    "Comida Vegetariana",
-    "Mariscos"
-]
-
-/** */
-
-
-
-//sidenavMenu.appendChild(sidenavMenuComponent(mockArrayData))
-
-
 sidenavCart.appendChild(sidenavCartComponent('hola'))
 let sidenavCartContainer = document.getElementById('sidenav-cart-container')
+
+
+// class-sidenav-menu-anchor es la clase de cada enlace del sidenav de categorias
+let classMenuAnchor = document.getElementsByClassName('class-sidenav-menu-anchor')
+
+console.log(classMenuAnchor);
+
+for (let i= 0; i < classMenuAnchor.length; i++) {
+    console.log('hola');
+    // anchor.onclick = ()=>{
+    //     closeMenuNav(sidenavMenu,sidenavCategoriesContainer)
+    //     console.log('lol');
+    // }
+}
