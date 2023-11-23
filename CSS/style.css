@@ -1,0 +1,136 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    height: 100dvh;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.dark-theme{
+    
+    background-color: rgb(15, 15, 17);
+}
+
+#div-container{
+    max-width: 450px;
+    width: 100%;
+    background-color: rgb(15, 15, 17);
+    position: relative; 
+}
+/*-------- COSITAS DEL NAVBAR ---------*/
+
+.navbar-component{
+    width: 100%;
+    height: 60px;
+    background-color: rgb(5, 82, 82);
+    display: grid;
+    grid-template-columns: 60px 1fr 60px;
+    grid-template-rows: 100%;
+    grid-template-areas: 'menu title cart';
+    align-items: center;
+    justify-items: center;
+}
+
+.icon-button{
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+    background: none;
+    color: white;
+}
+
+.menu-btn{
+    grid-area: menu;
+}
+
+.cart-btn{
+    grid-area: cart;
+}
+
+.navbar-title{
+    grid-area: title;
+}
+
+/*-------- COSITAS DEL SIDENAV ---------*/
+.sidenav{
+    height: 100%;
+    width: 0;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    overflow: hidden;
+}
+
+.sidenav-left{
+    left: 0;
+}
+
+.sidenav-right{
+    right: 0;
+}
+  
+.sidenav-left a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    height: 50px;
+}
+  
+.sidenav a:hover {
+    color: #f1f1f1;
+    background-color: rgba(0, 255, 255, 0.254);
+}
+  
+.sidenav .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 40px;
+    margin-left: 50px;
+    margin-top: 10px;
+}
+  
+.content{
+    margin-left: 0;
+    transition: margin-left 0.5s;
+}
+
+.display-none{ 
+    display: none;
+}
+
+.opacity-cero-transition{
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.opacity-one-transition{
+    opacity: 1;
+    transition: all 0.5s;
+}
+
+
+.sidenav-categories-container{
+    width: 100%;
+    height: 95%;
+    border: 1px solid salmon;
+    overflow-y: scroll;
+}
