@@ -1,6 +1,4 @@
 import { navbarComponent } from './components/navbarComponent/navbar.component.js'
-import { sidenavMenuComponent } from './components/sidenavMenuComponent/sidenavMenu.component.js'
-import { sidenavCartComponent } from './components/sidenavCartComponent/sidenavCart.component.js'
 
 const restaurantUser = "angelydemonio_102";
 const restaurantName = "ANGEL & DEMONIO";
@@ -65,7 +63,6 @@ async function renderCategories(data) {
     try {
         sidenavMenu.appendChild(sidenavMenuComponent(data))
         sidenavCategoriesContainer = document.getElementById('sidenav-categories-container')
-
     } catch (error) {
         console.error("Error al obtener los productos:", error);
     }
@@ -109,16 +106,30 @@ function closeMenuNav(conteiner, content) {
 sidenavCart.appendChild(sidenavCartComponent('hola'))
 let sidenavCartContainer = document.getElementById('sidenav-cart-container')
 
+function sidenavMenuComponent(data){
+    const container = document.createElement('div');
+    container.classList.add('sidenav-categories-container')
+    container.classList.add('display-none')
+    container.classList.add('opacity-cero-transition')
+    container.id = 'sidenav-categories-container'
+    container.textContent = 'Categorias'
+    for (const obj of data) {
+        const anchor = document.createElement('a');
+        anchor.textContent = obj.name
+        anchor.href = 'side-'+obj.id
+        anchor.className = 'class-sidenav-menu-anchor'
+        anchor.onclick = ()=>{ 
+            closeMenuNav(sidenavMenu,sidenavCategoriesContainer)
+        }
+        container.append(anchor)
+    }
+    return container
+}
 
-// class-sidenav-menu-anchor es la clase de cada enlace del sidenav de categorias
-let classMenuAnchor = document.getElementsByClassName('class-sidenav-menu-anchor')
-
-console.log(classMenuAnchor);
-
-for (let i= 0; i < classMenuAnchor.length; i++) {
-    console.log('hola');
-    // anchor.onclick = ()=>{
-    //     closeMenuNav(sidenavMenu,sidenavCategoriesContainer)
-    //     console.log('lol');
-    // }
+function sidenavCartComponent(data){
+    const container = document.createElement('div');
+    container.className = 'sidenav-categories-container display-none opacity-cero-transition'
+    container.id = 'sidenav-cart-container'
+    container.textContent = 'Carrito de compras'
+    return container
 }
