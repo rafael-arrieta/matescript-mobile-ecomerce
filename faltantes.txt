@@ -1,0 +1,4 @@
+1 - Setear el objeto con las fuentes o la función que seteé las mismas
+2 - conectar websockets
+3 - colocar la funcion del query-params para que tome el nombre del lugar por parametro
+4 - conectar con whatsapp

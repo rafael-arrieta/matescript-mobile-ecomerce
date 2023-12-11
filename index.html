@@ -6,15 +6,21 @@
     <link rel="stylesheet" href="./CSS/style.css?v=123">
 </head>
 <body>
-    <div id="div-container">
+    <div id="div-container" class="div-container">
+        <div id="product-detail-modal" class="product-detail-modal display-none"></div>
         <div class="sidenav sidenav-right" id="sidenav-cart">
-            <button class="close-btn" id="close-cart-btn">×</button>
+            <div class="sidenav-title display-none" id="sidenav-menu-cart">
+                <h2>Pedido</h2>
+                <button class="close-btn" id="close-cart-btn">×</button>
+            </div>
         </div>
         <div class="sidenav sidenav-left" id="sidenav-menu">
-            <button class="close-btn" id="close-menu-btn">×</button>
+            <div id="sidenav-menu-categories" class="sidenav-title display-none">
+                <h2>Categorias</h2>
+                <button class="close-btn" id="close-menu-btn">×</button>
+            </div>
         </div>
     </div>
-
     
 
     <script type="module" src="./JS/main.js?v=123"></script>
